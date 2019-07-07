@@ -26,11 +26,13 @@ print ('''
 print(" ")
 
 class Bot:
+
     def __init__(self,uname,password):
         self.uname = uname
         self.password = password
         self.bot = webdriver.Firefox()
 
+#Login method
     def login(self):
         bot = self.bot
         bot.get('https://www.twitter.com')
@@ -43,6 +45,8 @@ class Bot:
         password.send_keys(self.password)
         password.send_keys(Keys.RETURN)
         time.sleep(5)
+
+#Like method
     def liker(self,hash):
         bot = self.bot
         bot.get('https://twitter.com/search?q=' + hash+'&src=typd')
@@ -60,6 +64,8 @@ class Bot:
                 except Exception as ex:
                     time.sleep(40)
             print(links)
+
+#Aksing input from user for feasibility
 
 enterid = input('Enter the Twitter Email ID: ')
 enterpass = input('Enter the password of the above account: ')
