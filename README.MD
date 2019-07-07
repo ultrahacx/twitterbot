@@ -8,7 +8,7 @@
 pip3 install -r requirements.txt
 ```
 
-## Usage
+## Woking
 The scripts accepts the Email  ID and the password of your Twitter account and logins using Firefox via webdriver.<br>
 Then the scripts asks for a search term form the user and search it and likes all the tweets shown in the search result.
 
