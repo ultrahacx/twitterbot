@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import os
 import time
+import requests
 os.system('cls')
 
 print ('''
@@ -26,7 +27,6 @@ print ('''
 print(" ")
 
 class Bot:
-
     def __init__(self,uname,password):
         self.uname = uname
         self.password = password
@@ -65,11 +65,35 @@ class Bot:
                     time.sleep(40)
             print(links)
 
-#Aksing input from user for feasibility
+            # CLASS FOR CHECKING INTERNET CONNECTION
+class Check:
+    def check_internet(self):
+        url = 'http://www.google.com/'
+        timeout = 5
+        try:
+            _ = requests.get(url, timeout=timeout)
+            return True
+        except requests.ConnectionError:
+            return False
 
-enterid = input('Enter the Twitter Email ID: ')
-enterpass = input('Enter the password of the above account: ')
-botstart = Bot(enterid,enterpass)
-botstart.login()
-enterterm = input('Enter the WORD of which you would like the post: ')
-botstart.liker(enterterm)
+        return False
+
+ch= Check()
+if( ch.check_internet() == True):
+    enterid = input('Enter the Twitter Email ID: ')
+    enterpass = input('Enter the password of the above account: ')
+    botstart = Bot(enterid,enterpass)
+
+
+    botstart.login()
+    enterterm = input('Enter the WORD of which you would like the post: ')
+    botstart.liker(enterterm)
+else:
+    print('''
+    
+                            -----------------------------------------------------------
+                            NO INTERNET CONNECTION DETECTED.... RECONNECT AND TRY AGAIN
+                            -----------------------------------------------------------
+    ''')
+
+
